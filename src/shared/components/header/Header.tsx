@@ -4,12 +4,9 @@ import { logo, menu } from 'assets';
 
 export const Header: React.FC = () => {
   return (
-    <div css={styles.header}>
+    <div css={styles.container}>
       <img css={styles.logo} src={logo} />
-      <div css={styles.container__menu}>
-        <button css={styles.button}>Configure a car</button>
-        <img css={styles.menu} src={menu} />
-      </div>
+      <img css={styles.menu} src={menu} />
     </div>
   );
 };
