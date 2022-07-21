@@ -1,12 +1,15 @@
 /** @jsxImportSource @emotion/react */
+import { Outlet } from 'react-router-dom';
 import { Header } from '../header';
-import { wrapper } from './Layout.styles';
+import styles from './Layout.styles';
 
 export const Layout: React.FC = () => {
   return (
-    <div>
+    <div css={styles.container}>
       <Header />
-      <main css={wrapper}></main>
+      <main css={styles.wrapper}>
+        <Outlet />
+      </main>
     </div>
   );
 };
