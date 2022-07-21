@@ -1,17 +1,15 @@
 import { css } from '@emotion/react';
 
 const container = css`
+  position: sticky;
+  top: 0;
+  z-index: 2;
   background-color: #2e2e38;
+  color: #fff;
   display: flex;
+  flex-shrink: 0;
   justify-content: space-between;
+  padding: 20px 40px;
 `;
 
-const logo = css`
-  margin: 20px 32px;
-`;
-
-const menu = css`
-  margin: 12px 20px;
-`;
-
-export default { container, logo, menu };
+export default { container };
