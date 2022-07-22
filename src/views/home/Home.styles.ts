@@ -1,22 +1,30 @@
 import { css } from '@emotion/react';
 
 const container = css`
+  max-width: 1128px;
+  margin: 0 auto;
+  padding: 76px 40px;
+  gap: 48px;
   display: flex;
   flex-direction: column;
-  height: 100%;
 `;
 
 const container__shared = css`
   display: flex;
   justify-content: space-between;
-  margin: 76px 0 0;
-  flex-shrink: 0;
+  @media (max-width: 428px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
 `;
 
 const shared__text = css`
-  font-weight: 400;
   font-size: 24px;
   color: #2e2e38;
+  @media (max-width: 428px) {
+    text-align: center;
+  }
 `;
 
 const shared__button = css`
@@ -36,7 +44,6 @@ const container__empty = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 0 76px;
 `;
 
 const image = css`
@@ -50,6 +57,9 @@ const empty_text = css`
   text-align: center;
   line-height: 28px;
   max-width: 50%;
+  @media (max-width: 428px) {
+    font-size: 16px;
+  }
 `;
 
 const link = css`
