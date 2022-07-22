@@ -19,7 +19,7 @@ const container__shared = css`
   }
 `;
 
-const shared__text = css`
+const container__shared__text = css`
   font-size: 24px;
   color: #2e2e38;
   @media (max-width: 428px) {
@@ -27,7 +27,7 @@ const shared__text = css`
   }
 `;
 
-const shared__button = css`
+const container__shared__button = css`
   background-color: #1e1ed2;
   color: #f1f1f4;
   border-color: #1e1ed2;
@@ -49,12 +49,12 @@ const container__empty = css`
   align-items: center;
 `;
 
-const image = css`
+const container__empty__image = css`
   opacity: 0.1;
   width: 100%;
 `;
 
-const empty_text = css`
+const container__empty__text = css`
   color: #73738c;
   font-size: 20px;
   text-align: center;
@@ -65,7 +65,7 @@ const empty_text = css`
   }
 `;
 
-const link = css`
+const container__empty__link = css`
   color: #1e1ed2;
   cursor: pointer;
   font-weight: 700;
@@ -77,10 +77,10 @@ const link = css`
 export default {
   container,
   container__shared,
-  shared__text,
-  shared__button,
+  container__shared__text,
+  container__shared__button,
   container__empty,
-  image,
-  empty_text,
-  link,
+  container__empty__image,
+  container__empty__text,
+  container__empty__link,
 };
