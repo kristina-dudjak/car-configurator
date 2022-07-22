@@ -36,6 +36,9 @@ const shared__button = css`
   font-size: 14px;
   cursor: pointer;
   padding: 12px 20px;
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 
 const container__empty = css`
@@ -66,6 +69,9 @@ const link = css`
   color: #1e1ed2;
   cursor: pointer;
   font-weight: 700;
+  &:hover {
+    opacity: 0.5;
+  }
 `;
 
 export default {
