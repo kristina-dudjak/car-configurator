@@ -3,16 +3,19 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   sendPasswordResetEmail,
+  signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+import { useDb } from 'shared';
 import { userAtoms } from 'shared/state';
 import { auth } from '../../firebase';
 
 export const useAuth = () => {
   const [uid, setUid] = useRecoilState(userAtoms.userUid);
+  const db = useDb();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -29,6 +32,7 @@ export const useAuth = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         setUid(user.uid);
+        db.saveUser(user.uid, name, email);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -49,6 +53,7 @@ export const useAuth = () => {
         const user = result.user;
         if (user.email && user.displayName) {
           setUid(user.uid);
+          db.saveUser(user.uid, user.displayName, user.email);
         }
       })
       .catch((error) => {
@@ -57,6 +62,21 @@ export const useAuth = () => {
         console.log(errorCode + errorMessage);
       });
   };
+
+  async function signIn(name: string, password: string) {
+    const email = await db.getUserEmail(name);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setUid(user.uid);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+      });
+  }
 
   const signout = () => {
     signOut(auth)
@@ -83,6 +103,7 @@ export const useAuth = () => {
 
   return {
     createAccount,
+    signIn,
     googleSignIn,
     signout,
     resetPassword,
