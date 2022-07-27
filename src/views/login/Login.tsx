@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from 'shared/hooks';
 
 export const Login: React.FC = () => {
   const [name, setName] = useState('');
@@ -8,13 +9,16 @@ export const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [forgotPassword, setForgotPassword] = useState(false);
   const navigate = useNavigate();
+  const auth = useAuth();
 
   function signIn(e: React.FormEvent) {
     e.preventDefault();
+    auth.signIn(name, password);
   }
 
   function sendEmail(e: React.FormEvent) {
     e.preventDefault();
+    auth.resetPassword(email);
   }
 
   return (
@@ -37,7 +41,7 @@ export const Login: React.FC = () => {
         <button>Login</button>
       </form>
       <p>Via google:</p>
-      <button>Google</button>
+      <button onClick={() => auth.googleSignIn()}>Google</button>
       <button
         onClick={() => {
           setForgotPassword(true);
@@ -59,7 +63,7 @@ export const Login: React.FC = () => {
           <button>Send email</button>
         </form>
       )}
-      <span>Don't have an account?</span>
+      <p>Don't have an account?</p>
       <button onClick={() => navigate('/register')}>Register</button>
     </>
   );

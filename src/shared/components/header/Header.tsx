@@ -1,13 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import { Logo, Menu } from 'assets';
 import { useState } from 'react';
+import { useAuth } from 'shared/hooks';
 import styles from './Header.styles';
 
 export const Header: React.FC = () => {
   const [visible, setVisible] = useState(false);
+  const auth = useAuth();
   function toggleVisibility() {
     setVisible(!visible);
   }
+
+  function logout() {
+    auth.signout();
+  }
+
   return (
     <div css={styles.container}>
       <header css={styles.container__header}>
@@ -16,7 +23,9 @@ export const Header: React.FC = () => {
       </header>
       <div css={styles.container__menu(visible)}>
         <a css={styles.container__menu__text}>My saved configurations</a>
-        <a css={styles.container__menu__text}>Logout</a>
+        <a onClick={logout} css={styles.container__menu__text}>
+          Logout
+        </a>
       </div>
     </div>
   );
