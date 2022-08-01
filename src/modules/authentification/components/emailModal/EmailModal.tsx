@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import styles from './EmailModal.styles';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { authAtoms, useAuth } from 'shared';
+import { authAtoms, useAuth } from 'modules';
 
 interface EmailModalProps {
-  show: boolean;
+  isOpen: boolean;
   onClose: () => void;
 }
 
-export const EmailModal: React.FC<EmailModalProps> = ({ show, onClose }) => {
+export const EmailModal: React.FC<EmailModalProps> = ({ isOpen, onClose }) => {
   const [email, setEmail] = useRecoilState(authAtoms.userEmail);
   const auth = useAuth();
   const errorMessage = useRecoilValue(authAtoms.authError);
@@ -19,7 +19,7 @@ export const EmailModal: React.FC<EmailModalProps> = ({ show, onClose }) => {
   }
   return (
     <div css={styles.wrapper}>
-      {show && (
+      {isOpen && (
         <section css={styles.container}>
           <h2>Reset your password</h2>
           <form css={styles.input__group} onSubmit={sendEmail}>
@@ -29,18 +29,12 @@ export const EmailModal: React.FC<EmailModalProps> = ({ show, onClose }) => {
               type="email"
               required={true}
               onChange={(e) => setEmail(e.currentTarget.value)}
-            ></input>
+            />
             {errorMessage && (
               <p css={styles.container__error}> {errorMessage} </p>
             )}
             <button css={styles.container__submit}>Send email</button>
-            <button
-              onClick={() => {
-                onClose();
-              }}
-              type="button"
-              css={styles.button}
-            >
+            <button onClick={onClose} type="button" css={styles.button}>
               Cancel
             </button>
           </form>

@@ -1,7 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Layout, authAtoms } from 'shared';
+import { Layout } from 'shared';
 import { Home, Login, Register } from 'views';
 import { useRecoilValue } from 'recoil';
+import { authAtoms } from 'modules';
 
 export function App() {
   const uid = useRecoilValue(authAtoms.userUid);
@@ -11,15 +12,15 @@ export function App() {
       <Route path="/" element={<Layout />}>
         <Route
           index
-          element={uid != '' ? <Home /> : <Navigate to="/login" />}
+          element={uid !== '' ? <Home /> : <Navigate to="/login" />}
         />
         <Route
           path="/register"
-          element={uid != '' ? <Navigate to="/" /> : <Register />}
+          element={uid !== '' ? <Navigate to="/" /> : <Register />}
         />
         <Route
           path="/login"
-          element={uid != '' ? <Navigate to="/" /> : <Login />}
+          element={uid !== '' ? <Navigate to="/" /> : <Login />}
         />
       </Route>
     </Routes>

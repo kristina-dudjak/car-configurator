@@ -10,17 +10,16 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth';
+import { authAtoms, useDb } from 'modules';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { useDb, authAtoms } from 'shared';
-import { auth } from '../../firebase';
+import { auth } from '../../../firebase';
 
 export const useAuth = () => {
   const [uid, setUid] = useRecoilState(authAtoms.userUid);
   const setErrorMessage = useSetRecoilState(authAtoms.authError);
   const name = useRecoilValue(authAtoms.userName);
   const email = useRecoilValue(authAtoms.userEmail);
-  const password = useRecoilValue(authAtoms.userPassword);
   const rememberUser = useRecoilValue(authAtoms.userRemember);
   const db = useDb();
 
@@ -35,19 +34,21 @@ export const useAuth = () => {
     });
   }, [uid]);
 
-  const createAccount = async () => {
+  const createAccount = async (password: string) => {
     if (!rememberUser) setPersistence(auth, browserSessionPersistence);
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         await updateProfile(userCredential.user, {
           displayName: name,
+        }).catch((error) => {
+          setErrorMessage(error.message);
         });
         setUid(userCredential.user.uid);
         db.saveUser(userCredential.user);
       })
-      .catch(async (error) => {
-        await setErrorMessage(error.message);
+      .catch((error) => {
+        setErrorMessage(error.message);
       });
   };
 
@@ -60,7 +61,6 @@ export const useAuth = () => {
     });
     signInWithPopup(auth, provider)
       .then((result) => {
-        GoogleAuthProvider.credentialFromResult(result);
         const user = result.user;
         if (user.email && user.displayName) {
           setUid(user.uid);
@@ -72,7 +72,7 @@ export const useAuth = () => {
       });
   };
 
-  async function signIn() {
+  async function signIn(password: string) {
     if (!rememberUser) setPersistence(auth, browserSessionPersistence);
     const email = await db.getUserEmail(name);
     signInWithEmailAndPassword(auth, email, password)

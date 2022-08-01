@@ -10,11 +10,6 @@ const userName = atom<string>({
   default: '',
 });
 
-const userPassword = atom<string>({
-  key: 'auth.password',
-  default: '',
-});
-
 const userEmail = atom<string>({
   key: 'auth.email',
   default: '',
@@ -33,7 +28,6 @@ const authError = atom<string>({
 export const authAtoms = {
   userUid,
   userName,
-  userPassword,
   userRemember,
   userEmail,
   authError,
