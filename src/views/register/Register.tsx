@@ -1,21 +1,23 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth, useDb } from 'shared/hooks';
+import { useRecoilState } from 'recoil';
+import { authAtoms, useAuth, useDb } from 'shared';
 
 export const Register: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [email, setEmail] = useRecoilState(authAtoms.userEmail);
+  const [password, setPassword] = useRecoilState(authAtoms.userPassword);
+  const [name, setName] = useRecoilState(authAtoms.userName);
+  const [rememberMe, setRememberMe] = useRecoilState(authAtoms.userRemember);
+  const [errorMessage, setErrorMessage] = useRecoilState(authAtoms.authError);
   const navigate = useNavigate();
   const auth = useAuth();
   const db = useDb();
 
-  async function register(e: React.FormEvent) {
+  function register(e: React.FormEvent) {
     e.preventDefault();
-    if (!errorMessage) {
-      auth.createAccount(name, email, password);
+    if (!errorMessage && email && password && name) {
+      auth.createAccount();
     }
   }
 
@@ -29,36 +31,57 @@ export const Register: React.FC = () => {
     }
   }
   return (
-    <>
-      <form onSubmit={register}>
-        <p>Name</p>
+    <form onSubmit={register}>
+      <h1>Register</h1>
+      <div>
+        <div>
+          <label>Name</label>
+          <input
+            value={name}
+            type="text"
+            required={true}
+            autoComplete={'on'}
+            onChange={(e) => updateName(e.currentTarget.value)}
+          ></input>
+        </div>
+        <div>
+          <label>Email</label>
+          <input
+            value={email}
+            type="email"
+            required={true}
+            autoComplete={'on'}
+            onChange={(e) => setEmail(e.currentTarget.value)}
+          ></input>
+        </div>
+        <div>
+          <label>Password</label>
+          <div>
+            <input
+              value={password}
+              type={'password'}
+              required={true}
+              autoComplete={'on'}
+              onChange={(e) => setPassword(e.currentTarget.value)}
+            ></input>
+          </div>
+        </div>
+      </div>
+      <button type="button" onClick={() => auth.googleSignIn()}></button>
+      <div>
         <input
-          value={name}
-          type="string"
-          required={true}
-          onChange={(e) => updateName(e.currentTarget.value)}
+          type={'checkbox'}
+          id={'rememberMe'}
+          onChange={() => setRememberMe(!rememberMe)}
         ></input>
-        {errorMessage && <p> {errorMessage} </p>}
-        <p>Email</p>
-        <input
-          value={email}
-          type="email"
-          required={true}
-          onChange={(e) => setEmail(e.currentTarget.value)}
-        ></input>
-        <p>Password</p>
-        <input
-          value={password}
-          type="password"
-          required={true}
-          onChange={(e) => setPassword(e.currentTarget.value)}
-        ></input>
-        <button>Submit</button>
-      </form>
-      <p>Via google:</p>
-      <button onClick={() => auth.googleSignIn()}>Google</button>
-      <p>Already have an account?</p>
-      <button onClick={() => navigate('/login')}>Login</button>
-    </>
+        <label htmlFor="rememberMe">Remember me?</label>
+      </div>
+      <button>Register</button>
+      {errorMessage && <p> {errorMessage} </p>}
+      <p>
+        Already have an account?
+        <a onClick={() => navigate('/login')}>Login</a>
+      </p>
+    </form>
   );
 };

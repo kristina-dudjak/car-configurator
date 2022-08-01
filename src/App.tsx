@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Layout, userAtoms } from 'shared';
+import { Layout, authAtoms } from 'shared';
 import { Home, Login, Register } from 'views';
 import { useRecoilValue } from 'recoil';
 
 export function App() {
-  const uid = useRecoilValue(userAtoms.userUid);
+  const uid = useRecoilValue(authAtoms.userUid);
 
   return (
     <Routes>

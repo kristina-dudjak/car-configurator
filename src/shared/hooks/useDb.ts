@@ -7,14 +7,15 @@ import {
   setDoc,
   where,
 } from 'firebase/firestore';
+import { User } from 'firebase/auth';
 
 export const useDb = () => {
-  const saveUser = (uid: string, name: string, email: string) => {
+  const saveUser = (user: User) => {
     setDoc(
-      doc(db, 'users', uid),
+      doc(db, 'users', user.uid),
       {
-        email: email,
-        name: name,
+        email: user.email,
+        name: user.displayName,
       },
       { merge: true },
     );
