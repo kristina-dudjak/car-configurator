@@ -6,9 +6,9 @@ import { useRecoilState } from 'recoil';
 import styles from './RegistrationForm.styles';
 
 export const RegistrationForm: React.FC = () => {
-  const [email, setEmail] = useRecoilState(authAtoms.userEmail);
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useRecoilState(authAtoms.userName);
+  const [name, setName] = useState('');
   const [rememberMe, setRememberMe] = useRecoilState(authAtoms.userRemember);
   const [errorMessage, setErrorMessage] = useRecoilState(authAtoms.authError);
   const [isVisible, setIsVisible] = useState(false);
@@ -17,20 +17,15 @@ export const RegistrationForm: React.FC = () => {
 
   function register(e: React.FormEvent) {
     e.preventDefault();
-    if (!errorMessage && email && password && name) {
-      auth.createAccount(password);
-    }
+    if (email && password && name) auth.createAccount(email, password, name);
   }
-
   async function updateName(input: string) {
     setName(input);
     const taken = await db.isTaken(input);
-    if (taken) {
-      setErrorMessage('Name already taken! Try again');
-    } else {
-      setErrorMessage('');
-    }
+    if (taken) setErrorMessage('Name already taken! Try again');
+    else setErrorMessage('');
   }
+
   return (
     <form css={styles.container} onSubmit={register}>
       <h1 css={styles.container__title}>Register</h1>

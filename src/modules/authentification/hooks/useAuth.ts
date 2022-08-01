@@ -18,8 +18,8 @@ import { auth } from '../../../firebase';
 export const useAuth = () => {
   const [uid, setUid] = useRecoilState(authAtoms.userUid);
   const setErrorMessage = useSetRecoilState(authAtoms.authError);
-  const name = useRecoilValue(authAtoms.userName);
-  const email = useRecoilValue(authAtoms.userEmail);
+  const setName = useSetRecoilState(authAtoms.userName);
+  const setEmail = useSetRecoilState(authAtoms.userEmail);
   const rememberUser = useRecoilValue(authAtoms.userRemember);
   const db = useDb();
 
@@ -34,7 +34,11 @@ export const useAuth = () => {
     });
   }, [uid]);
 
-  const createAccount = async (password: string) => {
+  const createAccount = async (
+    email: string,
+    password: string,
+    name: string,
+  ) => {
     if (!rememberUser) setPersistence(auth, browserSessionPersistence);
 
     await createUserWithEmailAndPassword(auth, email, password)
@@ -45,6 +49,8 @@ export const useAuth = () => {
           setErrorMessage(error.message);
         });
         setUid(userCredential.user.uid);
+        setEmail(email);
+        setName(name);
         db.saveUser(userCredential.user);
       })
       .catch((error) => {
@@ -72,12 +78,14 @@ export const useAuth = () => {
       });
   };
 
-  async function signIn(password: string) {
+  async function signIn(name: string, password: string) {
     if (!rememberUser) setPersistence(auth, browserSessionPersistence);
     const email = await db.getUserEmail(name);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         setUid(userCredential.user.uid);
+        setEmail(email);
+        setName(name);
       })
       .catch((error) => {
         setErrorMessage(error.message);
@@ -94,7 +102,7 @@ export const useAuth = () => {
       });
   };
 
-  const resetPassword = () => {
+  const resetPassword = (email: string) => {
     sendPasswordResetEmail(auth, email).catch((error) => {
       setErrorMessage(error.message);
     });

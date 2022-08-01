@@ -10,7 +10,7 @@ interface LoginFormProps {
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onShow }) => {
-  const [name, setName] = useRecoilState(authAtoms.userName);
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useRecoilState(authAtoms.userRemember);
   const errorMessage = useRecoilValue(authAtoms.authError);
@@ -19,9 +19,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onShow }) => {
 
   function signIn(e: React.FormEvent) {
     e.preventDefault();
-    if (!errorMessage && password && name) {
-      auth.signIn(password);
-    }
+    if (password && name) auth.signIn(name, password);
   }
 
   return (

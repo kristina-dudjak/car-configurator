@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import styles from './EmailModal.styles';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { authAtoms, useAuth } from 'modules';
+import { useState } from 'react';
 
 interface EmailModalProps {
   isOpen: boolean;
@@ -9,13 +10,13 @@ interface EmailModalProps {
 }
 
 export const EmailModal: React.FC<EmailModalProps> = ({ isOpen, onClose }) => {
-  const [email, setEmail] = useRecoilState(authAtoms.userEmail);
+  const [email, setEmail] = useState('');
   const auth = useAuth();
   const errorMessage = useRecoilValue(authAtoms.authError);
 
   function sendEmail(e: React.FormEvent) {
     e.preventDefault();
-    auth.resetPassword();
+    if (email) auth.resetPassword(email);
   }
   return (
     <div css={styles.wrapper}>
