@@ -1,15 +1,19 @@
 import { css } from '@emotion/react';
 
 const container = css`
-  max-width: 1128px;
-  margin: 0 auto;
-  padding: 76px 40px;
-  gap: 48px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-content: stretch;
+  column-gap: 2%;
+  height: 100%;
+  grid-template-areas:
+    '. shared shared shared shared shared shared shared shared shared shared .'
+    '. . . empty empty empty empty empty empty . . .';
 `;
 
 const container__shared = css`
+  align-self: center;
+  grid-area: shared;
   display: flex;
   justify-content: space-between;
   @media (max-width: 428px) {
@@ -22,9 +26,8 @@ const container__shared = css`
 const container__shared__text = css`
   font-size: 24px;
   color: #2e2e38;
-  @media (max-width: 428px) {
-    text-align: center;
-  }
+  font-weight: 400;
+  text-align: center;
 `;
 
 const container__shared__button = css`
@@ -42,11 +45,8 @@ const container__shared__button = css`
 `;
 
 const container__empty = css`
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  grid-area: empty;
+  place-self: start center;
 `;
 
 const container__empty__image = css`
@@ -57,9 +57,7 @@ const container__empty__image = css`
 const container__empty__text = css`
   color: #73738c;
   font-size: 20px;
-  text-align: center;
   line-height: 28px;
-  max-width: 50%;
   @media (max-width: 428px) {
     font-size: 16px;
   }
