@@ -1,8 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import styles from './CarSelect.styles';
+import { CarModel, useCarModels } from 'modules';
 
 export const CarSelect: React.FC = () => {
+  const cars = useCarModels();
+
   return (
     <section css={styles.container}>
       <div css={styles.container__text}>
@@ -11,7 +14,11 @@ export const CarSelect: React.FC = () => {
           Pick you favorite model and start configuring.
         </p>
       </div>
-      <section css={styles.container__cars}></section>
+      <section css={styles.container__cars}>
+        {cars.map((car) => (
+          <CarModel car={car} key={car.url} />
+        ))}
+      </section>
     </section>
   );
 };
