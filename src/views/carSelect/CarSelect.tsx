@@ -4,7 +4,7 @@ import styles from './CarSelect.styles';
 import { CarModel, useCarModels } from 'modules';
 
 export const CarSelect: React.FC = () => {
-  const cars = useCarModels();
+  const carModels = useCarModels();
 
   return (
     <section css={styles.container}>
@@ -15,7 +15,7 @@ export const CarSelect: React.FC = () => {
         </p>
       </div>
       <section css={styles.container__cars}>
-        {cars.map((car) => (
+        {carModels.cars.map((car) => (
           <CarModel car={car} key={car.url} />
         ))}
       </section>
