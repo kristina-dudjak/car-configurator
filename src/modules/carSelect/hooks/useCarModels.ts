@@ -14,13 +14,19 @@ export const useCarModels = () => {
         name: doc.data().name,
         year: doc.data().year,
         url: doc.data().url,
+        colors: [],
+        wheels: [],
+        interiors: [],
       });
     });
     setCars(carModels);
   }
+
   useEffect(() => {
     getModels();
   }, []);
 
-  return cars;
+  return {
+    cars,
+  };
 };
