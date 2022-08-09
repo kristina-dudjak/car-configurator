@@ -36,18 +36,9 @@ const container__description = css`
   line-height: 20px;
 `;
 
-const container__cars = css`
-  grid-area: cars;
-  align-self: start;
-  overflow-x: scroll;
-  display: flex;
-  flex-direction: row;
-`;
-
 export default {
   container,
   container__text,
   container__title,
   container__description,
-  container__cars,
 };
