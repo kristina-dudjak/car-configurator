@@ -9,9 +9,7 @@ export const Home: React.FC = () => {
   return (
     <section css={styles.container}>
       <div css={styles.container__shared}>
-        <span css={styles.container__shared__text}>
-          View saved configurations
-        </span>
+        <p css={styles.container__shared__text}>View saved configurations</p>
         <button
           css={styles.container__shared__button}
           onClick={() => navigate('/car-select')}
@@ -24,7 +22,7 @@ export const Home: React.FC = () => {
           src={require('assets/front-left-2.png')}
           css={styles.container__empty__image}
         />
-        <span css={styles.container__empty__text}>
+        <p css={styles.container__empty__text}>
           You haven’t configured any cars yet. You may choose to{' '}
           <a
             css={styles.container__empty__link}
@@ -32,7 +30,7 @@ export const Home: React.FC = () => {
           >
             configure some now.
           </a>
-        </span>
+        </p>
       </div>
     </section>
   );

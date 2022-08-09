@@ -12,7 +12,7 @@ const container__car = css`
   }
 `;
 
-const car_images = css`
+const car_image = css`
   min-width: 100%;
   margin: 0 -20% 0 -92%;
 `;
@@ -61,7 +61,7 @@ const car__info = css`
 
 export default {
   container__car,
-  car_images,
+  car_image,
   year,
   car_name,
   button,
