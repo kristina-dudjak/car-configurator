@@ -23,6 +23,7 @@ const configuration = atom<Configuration>({
     wheel: { id: '', name: '', thumbnail: '', price: 0 },
     interior: { id: '', name: '', thumbnail: '', price: 0 },
     price: 0,
+    year: 0,
     creationDate: Timestamp.fromMillis(0),
   },
 });

@@ -22,6 +22,7 @@ export const useConfiguration = () => {
         interior: configuration.interior,
         creationDate: configuration.creationDate,
         price: configuration.price,
+        year: configuration.year,
       },
       { merge: true },
     );
@@ -41,6 +42,7 @@ export const useConfiguration = () => {
       color: car.colors[0],
       wheel: car.wheels[0],
       interior: car.interiors[0],
+      year: car.year,
       price:
         car.price +
         car.colors[0].price +
@@ -55,6 +57,7 @@ export const useConfiguration = () => {
       configuration.interior = confSnapshot.data().interior;
       configuration.creationDate = confSnapshot.data().creationDate;
       configuration.price = confSnapshot.data().price;
+      configuration.year = confSnapshot.data().year;
 
       setSavedConfiguration(configuration);
       setConfigurationRecoilState(configuration);

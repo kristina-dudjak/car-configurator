@@ -3,6 +3,7 @@ import { CarItem } from 'modules';
 
 export interface Configuration {
   modelName: string;
+  year: number;
   color: CarItem;
   wheel: CarItem;
   interior: CarItem;
