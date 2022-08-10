@@ -7,7 +7,7 @@ import styles from './ConfigurationInfo.styles';
 export const ConfigurationInfo: React.FC = () => {
   const configuration = useRecoilValue(carAtoms.configuration);
   return (
-    <div>
+    <>
       <p css={styles.text}>Your configuration details</p>
       <div css={styles.details}>
         <p css={styles.subtitle}>Exterior</p>
@@ -19,6 +19,6 @@ export const ConfigurationInfo: React.FC = () => {
           <p css={styles.final__price}>{configuration.price}€</p>
         </div>
       </div>
-    </div>
+    </>
   );
 };
