@@ -19,6 +19,7 @@ export const Configuration: React.FC = () => {
       <NavBar />
       <CarSlider />
       <CarInfo />
+      <p css={styles.text}>Your configuration details</p>
       <ConfigurationInfo />
     </section>
   );

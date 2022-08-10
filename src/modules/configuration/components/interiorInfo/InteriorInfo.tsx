@@ -8,7 +8,7 @@ export const InteriorInfo: React.FC = () => {
   const configuration = useRecoilValue(carAtoms.configuration);
 
   return (
-    <div css={styles.interior__item}>
+    <article css={styles.interior__item}>
       <div css={styles.interior__info}>
         <img
           src={configuration.interior.thumbnail}
@@ -18,6 +18,6 @@ export const InteriorInfo: React.FC = () => {
         <p css={styles.interior__item__name}>{configuration.interior.name}</p>
       </div>
       <p css={styles.interior__item__price}>{configuration.interior.price}€</p>
-    </div>
+    </article>
   );
 };

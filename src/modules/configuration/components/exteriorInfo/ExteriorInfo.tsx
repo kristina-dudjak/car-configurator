@@ -9,7 +9,7 @@ export const ExteriorInfo: React.FC = () => {
 
   return (
     <>
-      <div css={styles.exterior__item}>
+      <article css={styles.exterior__item}>
         <div css={styles.exterior__info}>
           <img
             src={configuration.color.thumbnail}
@@ -19,8 +19,8 @@ export const ExteriorInfo: React.FC = () => {
           <p css={styles.exterior__item__name}>{configuration.color.name}</p>
         </div>
         <p css={styles.exterior__item__price}>{configuration.color.price}€</p>
-      </div>
-      <div css={styles.exterior__item}>
+      </article>
+      <article css={styles.exterior__item}>
         <div css={styles.exterior__info}>
           <img
             src={configuration.wheel.thumbnail}
@@ -29,10 +29,8 @@ export const ExteriorInfo: React.FC = () => {
           />
           <p css={styles.exterior__item__name}>{configuration.wheel.name}</p>
         </div>
-        <span css={styles.exterior__item__price}>
-          {configuration.wheel.price}€
-        </span>
-      </div>
+        <p css={styles.exterior__item__price}>{configuration.wheel.price}€</p>
+      </article>
     </>
   );
 };

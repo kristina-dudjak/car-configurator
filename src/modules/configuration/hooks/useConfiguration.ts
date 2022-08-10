@@ -30,7 +30,12 @@ export const useConfiguration = () => {
     setConfigurationRecoilState(configuration);
   }
   async function getSavedConfiguration(modelName: string) {
-    const ref = doc(db, 'users', userId, 'configurations/' + modelName);
+    const configurationRef = doc(
+      db,
+      'users',
+      userId,
+      'configurations/' + modelName,
+    );
     const configuration: Configuration = {
       modelName: modelName,
       color: car.colors[0],
@@ -43,13 +48,13 @@ export const useConfiguration = () => {
         car.interiors[0].price,
       creationDate: Timestamp.now(),
     };
-    const querySnapshot = await getDoc(ref);
-    if (querySnapshot.exists()) {
-      configuration.color = querySnapshot.data().color;
-      configuration.wheel = querySnapshot.data().wheel;
-      configuration.interior = querySnapshot.data().interior;
-      configuration.creationDate = querySnapshot.data().creationDate;
-      configuration.price = querySnapshot.data().price;
+    const confSnapshot = await getDoc(configurationRef);
+    if (confSnapshot.exists()) {
+      configuration.color = confSnapshot.data().color;
+      configuration.wheel = confSnapshot.data().wheel;
+      configuration.interior = confSnapshot.data().interior;
+      configuration.creationDate = confSnapshot.data().creationDate;
+      configuration.price = confSnapshot.data().price;
 
       setSavedConfiguration(configuration);
       setConfigurationRecoilState(configuration);

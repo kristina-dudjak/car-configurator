@@ -1,16 +1,5 @@
 import { css } from '@emotion/react';
 
-const text = css`
-  grid-area: text;
-  color: #2e2e38;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 32px;
-  @media (max-width: 428px) {
-    font-size: 24px;
-  }
-`;
-
 const details = css`
   grid-area: details;
 `;
@@ -31,7 +20,7 @@ const final__price = css`
 
 const subtitle = css`
   padding: 0 0 20px 0;
-  border-bottom: 1px solid #9d9daf;
+  border-bottom: 1px solid #c7c7d1;
   margin: 0;
   color: #505062;
   font-weight: 400;
@@ -53,7 +42,6 @@ const price__item = css`
 export default {
   total,
   final__price,
-  text,
   details,
   subtitle,
   price__item,

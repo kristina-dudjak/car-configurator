@@ -19,7 +19,7 @@ export const CarSlider: React.FC = () => {
     }
   }
   return (
-    <div css={styles.car__slider}>
+    <article css={styles.car__slider}>
       <img src={imageUrl} css={styles.image} alt={'Car image'} />
       <div css={styles.picker}>
         <ArrowLeft css={styles.arrow} onClick={subtract} />
@@ -28,6 +28,6 @@ export const CarSlider: React.FC = () => {
         <p css={styles.slider__item}>5</p>
         <ArrowRight css={styles.arrow} onClick={add} />
       </div>
-    </div>
+    </article>
   );
 };

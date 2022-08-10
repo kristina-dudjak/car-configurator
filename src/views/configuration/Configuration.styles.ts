@@ -20,6 +20,18 @@ const container = css`
   }
 `;
 
+const text = css`
+  grid-area: text;
+  color: #2e2e38;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  @media (max-width: 428px) {
+    font-size: 24px;
+  }
+`;
+
 export default {
   container,
+  text,
 };
