@@ -14,6 +14,7 @@ export const useCarModels = () => {
         name: doc.data().name,
         year: doc.data().year,
         url: doc.data().url,
+        price: doc.data().price,
         colors: [],
         wheels: [],
         interiors: [],
