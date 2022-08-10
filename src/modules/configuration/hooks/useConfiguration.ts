@@ -1,15 +1,17 @@
-import { doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
+import { deleteDoc, doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
 import { authAtoms, carAtoms, Configuration } from 'modules';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { db } from '../../../firebase';
 
-export const useConfiguration = (name: string) => {
+export const useConfiguration = () => {
   const userId = useRecoilValue(authAtoms.userUid);
   const [configuration, setConfiguration] = useState<Configuration>();
   const [savedConfiguration, setSavedConfiguration] = useState<Configuration>();
   const setConfigurationRecoilState = useSetRecoilState(carAtoms.configuration);
   const car = useRecoilValue(carAtoms.car);
+  const { name } = useParams();
 
   async function saveConfiguration(configuration: Configuration) {
     setDoc(
@@ -56,16 +58,21 @@ export const useConfiguration = (name: string) => {
     }
   }
 
-  useEffect(() => {
-    if (car.name === name) getSavedConfiguration(name);
-  }, [car]);
+  async function deleteConfiguration(modelName: string) {
+    await deleteDoc(doc(db, 'users', userId, 'configurations/' + modelName));
+  }
 
   useEffect(() => {
-    if (car && configuration) saveConfiguration(configuration);
+    if (car.name === name) getSavedConfiguration(name);
+  }, [car, configuration]);
+
+  useEffect(() => {
+    if (car.name === name && configuration) saveConfiguration(configuration);
   }, [configuration]);
 
   return {
     savedConfiguration,
     setConfiguration,
+    deleteConfiguration,
   };
 };

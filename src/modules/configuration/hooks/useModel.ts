@@ -2,10 +2,12 @@ import { collection, doc, getDoc, getDocs, query } from 'firebase/firestore';
 import { Car, CarItem } from 'modules/carSelect';
 import { carAtoms } from 'modules/configuration';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { db } from '../../../firebase';
 
-export const useModel = (name: string) => {
+export const useModel = () => {
+  const { name } = useParams();
   const [car, setCar] = useRecoilState(carAtoms.car);
 
   async function getSubcollection(carName: string, collectionName: string) {
@@ -48,7 +50,7 @@ export const useModel = (name: string) => {
   }
 
   useEffect(() => {
-    if (car.name != name) getModelByName(name);
+    if (name && car.name != name) getModelByName(name);
   }, []);
 
   return car;
