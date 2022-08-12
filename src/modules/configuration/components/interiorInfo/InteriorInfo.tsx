@@ -17,7 +17,7 @@ export const InteriorInfo: React.FC = () => {
         />
         <p css={styles.interior__item__name}>{interior.name}</p>
       </div>
-      <p css={styles.interior__item__price}>{interior.price}€</p>
+      <p css={styles.interior__item__price}>{interior.price} €</p>
     </article>
   );
 };

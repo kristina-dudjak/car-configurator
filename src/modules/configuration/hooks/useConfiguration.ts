@@ -1,5 +1,5 @@
 import { Timestamp } from 'firebase/firestore';
-import { carAtoms, configurationAtoms } from 'modules';
+import { carAtoms, configurationAtoms, configurationSelector } from 'modules';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
@@ -23,24 +23,27 @@ export const useConfiguration = () => {
     configurationAtoms.configurationCreationDate,
   );
   const car = useRecoilValue(carAtoms.car);
-  const { name } = useParams();
+  const { carName } = useParams();
+  const { name } = useRecoilValue(configurationSelector.configuration);
 
   function setDefaultConfiguration() {
-    setConfName(car.name);
-    setConfYear(car.year);
-    setConfPrice(
-      car.price +
-        car.colors[0].price +
-        car.wheels[0].price +
-        car.interiors[0].price,
-    );
-    setConfDate(Timestamp.now());
-    setConfColor(car.colors[0]);
-    setConfInterior(car.interiors[0]);
-    setConfWheel(car.wheels[0]);
+    if (name !== carName) {
+      setConfName(car.name);
+      setConfYear(car.year);
+      setConfPrice(
+        car.price +
+          car.colors[0].price +
+          car.wheels[0].price +
+          car.interiors[0].price,
+      );
+      setConfDate(Timestamp.now());
+      setConfColor(car.colors[0]);
+      setConfInterior(car.interiors[0]);
+      setConfWheel(car.wheels[0]);
+    }
   }
 
   useEffect(() => {
-    if (car.name != '' && car.name === name) setDefaultConfiguration();
+    if (car.name != '' && car.name === carName) setDefaultConfiguration();
   }, [car]);
 };

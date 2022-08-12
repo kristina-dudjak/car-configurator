@@ -19,6 +19,7 @@ const car__name = css`
   margin: 0;
   letter-spacing: -2px;
   font-weight: 400;
+  font-family: 'Optician Sans';
   font-size: 48px;
   line-height: 44px;
   text-transform: uppercase;
@@ -30,8 +31,8 @@ const car__name = css`
 const car__year = css`
   color: #73738c;
   letter-spacing: -2px;
-  font-style: normal;
   font-weight: 400;
+  font-family: 'Optician Sans';
   font-size: 28px;
   line-height: 32px;
   margin: 0;

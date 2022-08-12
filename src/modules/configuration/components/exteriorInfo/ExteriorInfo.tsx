@@ -17,7 +17,7 @@ export const ExteriorInfo: React.FC = () => {
           />
           <p css={styles.exterior__item__name}>{color.name}</p>
         </div>
-        <p css={styles.exterior__item__price}>{color.price}€</p>
+        <p css={styles.exterior__item__price}>{color.price} €</p>
       </article>
       <article css={styles.exterior__item}>
         <div css={styles.exterior__info}>
@@ -28,7 +28,7 @@ export const ExteriorInfo: React.FC = () => {
           />
           <p css={styles.exterior__item__name}>{wheel.name}</p>
         </div>
-        <p css={styles.exterior__item__price}>{wheel.price}€</p>
+        <p css={styles.exterior__item__price}>{wheel.price} €</p>
       </article>
     </>
   );

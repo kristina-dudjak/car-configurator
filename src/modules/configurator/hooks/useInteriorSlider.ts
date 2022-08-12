@@ -1,29 +1,22 @@
 import { getDownloadURL, getStorage, ref } from 'firebase/storage';
+import { configurationSelector } from 'modules';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { configurationSelector } from '../state';
 
-export const useSlider = (page: number) => {
+export const useInteriorSlider = (page: number) => {
   const [image, setImage] = useState('');
   const { carName } = useParams();
-  const { name, color, wheel } = useRecoilValue(
+  const { name, interior } = useRecoilValue(
     configurationSelector.configuration,
   );
 
-  function getCarImage() {
+  function getInteriorImage() {
     const storage = getStorage();
     getDownloadURL(
       ref(
         storage,
-        'images/' +
-          name +
-          '/exteriors/' +
-          color.id +
-          wheel.id +
-          '/' +
-          page +
-          '.png',
+        'images/' + name + '/interiors/' + interior.id + '/' + page + '.png',
       ),
     )
       .then((url) => {
@@ -35,7 +28,7 @@ export const useSlider = (page: number) => {
   }
 
   useEffect(() => {
-    if (name === carName) getCarImage();
-  }, [name, color, wheel, page]);
+    if (name === carName) getInteriorImage();
+  }, [name, interior, page]);
   return image;
 };

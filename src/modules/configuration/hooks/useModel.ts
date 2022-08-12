@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil';
 import { db } from '../../../firebase';
 
 export const useModel = () => {
-  const { name } = useParams();
+  const { carName } = useParams();
   const [car, setCar] = useRecoilState(carAtoms.car);
 
   async function getSubcollection(carName: string, collectionName: string) {
@@ -42,7 +42,7 @@ export const useModel = () => {
   }
 
   useEffect(() => {
-    if (name && car.name != name) getModelByName(name);
+    if (carName && car.name != carName) getModelByName(carName);
   }, []);
 
   return car;

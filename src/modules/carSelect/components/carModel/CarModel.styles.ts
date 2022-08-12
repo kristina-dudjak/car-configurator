@@ -20,6 +20,7 @@ const car_image = css`
 const year = css`
   font-size: 28px;
   line-height: 32px;
+  font-family: 'Optician Sans';
   color: #73738c;
   @media (max-width: 428px) {
     font-size: 20px;
@@ -31,6 +32,7 @@ const car_name = css`
   line-height: 44px;
   letter-spacing: -2px;
   color: #2e2e38;
+  font-family: 'Optician Sans';
   text-transform: uppercase;
   @media (max-width: 428px) {
     font-size: 24px;
