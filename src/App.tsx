@@ -1,6 +1,6 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { Layout } from 'shared';
-import { CarSelect, Home, Login, Register } from 'views';
+import { CarSelect, Configuration, Home, Login, Register } from 'views';
 import { useRecoilValue } from 'recoil';
 import { authAtoms } from 'modules';
 
@@ -23,9 +23,15 @@ export function App() {
           element={uid !== '' ? <Navigate to="/" /> : <Login />}
         />
         <Route
-          path="/car-select"
-          element={uid !== '' ? <CarSelect /> : <Login />}
-        />
+          path="configuration"
+          element={uid !== '' ? <Outlet /> : <Login />}
+        >
+          <Route index element={<CarSelect />} />
+          <Route path=":name">
+            <Route index element={<Configuration />} />
+          </Route>
+        </Route>
+
         <Route path="*" element={<p>There's nothing here!</p>} />
       </Route>
     </Routes>

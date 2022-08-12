@@ -12,7 +12,7 @@ export const Home: React.FC = () => {
         <p css={styles.container__shared__text}>View saved configurations</p>
         <button
           css={styles.container__shared__button}
-          onClick={() => navigate('/car-select')}
+          onClick={() => navigate('/configuration')}
         >
           Configure a car
         </button>
@@ -26,7 +26,7 @@ export const Home: React.FC = () => {
           You haven’t configured any cars yet. You may choose to{' '}
           <a
             css={styles.container__empty__link}
-            onClick={() => navigate('/car-select')}
+            onClick={() => navigate('/configuration')}
           >
             configure some now.
           </a>
