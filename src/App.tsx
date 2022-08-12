@@ -34,7 +34,7 @@ export function App() {
         />
         <Route
           path="configuration"
-          element={uid !== '' ? <Outlet /> : <Login />} //element={uid !== '' ? <Outlet /> : <Navigate to="/login" />}
+          element={uid !== '' ? <Outlet /> : <Login />}
         >
           <Route index element={<CarSelect />} />
           <Route path=":carName">
@@ -44,7 +44,7 @@ export function App() {
             <Route path="summary" element={<Summary />} />
           </Route>
         </Route>
-        <Route path="*" element={<p>There's nothing here!</p>} />
+        <Route path="*" element={<ErrorView />} />
       </Route>
     </Routes>
   );
