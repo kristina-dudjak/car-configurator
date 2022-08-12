@@ -11,7 +11,9 @@ interface PickerItemProps {
 }
 
 export const PickerItem: React.FC<PickerItemProps> = ({ item, groupItem }) => {
-  const configuration = useRecoilValue(configurationSelector.configuration);
+  const { color, wheel, interior } = useRecoilValue(
+    configurationSelector.configuration,
+  );
   const setColor = useSetRecoilState(configurationAtoms.configurationColor);
   const setWheel = useSetRecoilState(configurationAtoms.configurationWheel);
   const setInterior = useSetRecoilState(
@@ -27,17 +29,15 @@ export const PickerItem: React.FC<PickerItemProps> = ({ item, groupItem }) => {
     <div css={styles.container__details__item} onClick={change}>
       <span css={styles.container__image}>
         <img src={item.thumbnail} css={styles.image} />
-        {(configuration.color.name === item.name ||
-          configuration.wheel.name === item.name ||
-          configuration.interior.name === item.name) && (
-          <CheckMark css={styles.checkmark} />
-        )}
+        {(color.name === item.name ||
+          wheel.name === item.name ||
+          interior.name === item.name) && <CheckMark css={styles.checkmark} />}
       </span>
       <span css={styles.item__text}>
         <p css={styles.item__name}>{item.name}</p>
-        {(configuration.color.name === item.name ||
-          configuration.wheel.name === item.name ||
-          configuration.interior.name === item.name) && (
+        {(color.name === item.name ||
+          wheel.name === item.name ||
+          interior.name === item.name) && (
           <p css={styles.item__price}>{item.price} €</p>
         )}
       </span>

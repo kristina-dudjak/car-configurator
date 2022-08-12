@@ -27,7 +27,7 @@ export const ConfiguratorFooter: React.FC = () => {
           <p css={styles.total}>Total</p>
           <Info css={styles.info} />
         </div>
-        <p css={styles.total__price}>{price}€</p>
+        <p css={styles.total__price}>{price} €</p>
         <button css={styles.button} onClick={saveConf}>
           Save your configuration
         </button>
