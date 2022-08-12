@@ -1,14 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { ArrowLeft } from 'assets';
 import { carAtoms, useEditing } from 'modules';
-import { NavLink, useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import styles from './ConfiguratorNavBar.styles';
 
 export const ConfiguratorNavBar: React.FC = () => {
   const navigate = useNavigate();
-  const car = useRecoilValue(carAtoms.car);
-  const { name } = useParams();
+  const { name, year } = useRecoilValue(carAtoms.car);
   const { editing } = useEditing();
   return (
     <nav css={styles.container__nav(editing)}>
@@ -17,8 +16,8 @@ export const ConfiguratorNavBar: React.FC = () => {
           css={styles.back}
           onClick={() => navigate('/configuration/' + name)}
         />
-        <p css={styles.year}>{car.year}</p>
-        <p css={styles.car}>{car.name}</p>
+        <p css={styles.year}>{year}</p>
+        <p css={styles.car}>{name}</p>
       </div>
       <div css={styles.container__nav__right(editing)}>
         <div css={styles.element}>
@@ -26,7 +25,9 @@ export const ConfiguratorNavBar: React.FC = () => {
             01
             <NavLink
               css={styles.link}
-              to={`/configuration/${name!.replace(' ', '%20')}/exterior`}
+              to={`/configuration/${name
+                .replace(' ', '%20')
+                .replace(' ', '%20')}/exterior`}
               style={({ isActive }) => {
                 return {
                   fontWeight: isActive ? '700' : '400',
@@ -42,7 +43,9 @@ export const ConfiguratorNavBar: React.FC = () => {
             02
             <NavLink
               css={styles.link}
-              to={`/configuration/${name!.replace(' ', '%20')}/interior`}
+              to={`/configuration/${name
+                .replace(' ', '%20')
+                .replace(' ', '%20')}/interior`}
               style={({ isActive }) => {
                 return {
                   fontWeight: isActive ? '700' : '400',
@@ -58,7 +61,9 @@ export const ConfiguratorNavBar: React.FC = () => {
             03
             <NavLink
               css={styles.link}
-              to={`/configuration/${name!.replace(' ', '%20')}/summary`}
+              to={`/configuration/${name
+                .replace(' ', '%20')
+                .replace(' ', '%20')}/summary`}
               style={({ isActive }) => {
                 return {
                   fontWeight: isActive ? '700' : '400',

@@ -3,6 +3,7 @@ import { Layout } from 'shared';
 import {
   CarSelect,
   Configuration,
+  ErrorView,
   Exterior,
   Home,
   Interior,
@@ -33,17 +34,16 @@ export function App() {
         />
         <Route
           path="configuration"
-          element={uid !== '' ? <Outlet /> : <Login />}
+          element={uid !== '' ? <Outlet /> : <Login />} //element={uid !== '' ? <Outlet /> : <Navigate to="/login" />}
         >
           <Route index element={<CarSelect />} />
-          <Route path=":name">
+          <Route path=":carName">
             <Route index element={<Configuration />} />
             <Route path="exterior" element={<Exterior />} />
             <Route path="interior" element={<Interior />} />
             <Route path="summary" element={<Summary />} />
           </Route>
         </Route>
-
         <Route path="*" element={<p>There's nothing here!</p>} />
       </Route>
     </Routes>

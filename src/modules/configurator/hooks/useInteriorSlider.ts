@@ -6,21 +6,17 @@ import { useRecoilValue } from 'recoil';
 
 export const useInteriorSlider = (page: number) => {
   const [image, setImage] = useState('');
-  const { name } = useParams();
-  const configuration = useRecoilValue(configurationSelector.configuration);
+  const { carName } = useParams();
+  const { name, interior } = useRecoilValue(
+    configurationSelector.configuration,
+  );
 
   function getInteriorImage() {
     const storage = getStorage();
     getDownloadURL(
       ref(
         storage,
-        'images/' +
-          configuration.name +
-          '/interiors/' +
-          configuration.interior.id +
-          '/' +
-          page +
-          '.png',
+        'images/' + name + '/interiors/' + interior.id + '/' + page + '.png',
       ),
     )
       .then((url) => {
@@ -32,7 +28,7 @@ export const useInteriorSlider = (page: number) => {
   }
 
   useEffect(() => {
-    if (configuration.name === name) getInteriorImage();
-  }, [configuration, page]);
+    if (name === carName) getInteriorImage();
+  }, [name, interior, page]);
   return image;
 };

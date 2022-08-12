@@ -6,8 +6,10 @@ import { configurationSelector } from '../state';
 
 export const useSlider = (page: number) => {
   const [image, setImage] = useState('');
-  const { name } = useParams();
-  const configuration = useRecoilValue(configurationSelector.configuration);
+  const { carName } = useParams();
+  const { name, color, wheel } = useRecoilValue(
+    configurationSelector.configuration,
+  );
 
   function getCarImage() {
     const storage = getStorage();
@@ -15,10 +17,10 @@ export const useSlider = (page: number) => {
       ref(
         storage,
         'images/' +
-          configuration.name +
+          name +
           '/exteriors/' +
-          configuration.color.id +
-          configuration.wheel.id +
+          color.id +
+          wheel.id +
           '/' +
           page +
           '.png',
@@ -33,7 +35,7 @@ export const useSlider = (page: number) => {
   }
 
   useEffect(() => {
-    if (configuration.name === name) getCarImage();
-  }, [configuration, page]);
+    if (name === carName) getCarImage();
+  }, [name, color, wheel, page]);
   return image;
 };
