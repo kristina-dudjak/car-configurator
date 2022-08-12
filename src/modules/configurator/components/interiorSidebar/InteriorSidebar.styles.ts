@@ -10,13 +10,10 @@ const container__details = css`
   justify-content: space-between;
 `;
 
-const container__details__items = css`
-  margin: 40px;
-`;
-
 const container__details__item = css`
   display: flex;
   gap: 20px;
+  margin: 40px;
   align-items: center;
   &:hover {
     cursor: pointer;
@@ -125,7 +122,6 @@ const checkmark = css`
 
 export default {
   container__details,
-  container__details__items,
   container__details__item,
   image,
   item__text,

@@ -24,24 +24,29 @@ const container__nav__left = css`
 `;
 
 const year = css`
-  color: #9d9daf;
+  color: #73738c;
   font-weight: 400;
   font-size: 28px;
   line-height: 32px;
+  font-family: 'Optician Sans';
   letter-spacing: -2px;
   margin-left: 40px;
   @media (max-width: 900px) {
     margin: 0;
+    font-size: 24px;
   }
 `;
 
 const car = css`
-  color: #2e2e38;
   letter-spacing: -2px;
   text-transform: uppercase;
+  font-family: 'Optician Sans';
   font-weight: 400;
   font-size: 28px;
   line-height: 32px;
+  @media (max-width: 428px) {
+    font-size: 24px;
+  }
 `;
 
 const container__right = css`
@@ -109,6 +114,7 @@ const total__price = css`
   font-size: 24px;
   line-height: 32px;
   margin-right: 32px;
+  white-space: nowrap;
   @media (max-width: 428px) {
     font-size: 20px;
     margin: 0;

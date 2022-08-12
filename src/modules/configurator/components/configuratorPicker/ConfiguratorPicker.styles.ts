@@ -22,7 +22,7 @@ const title = css`
   font-weight: 400;
   font-size: 24px;
   line-height: 32px;
-  margin: 24px 40px;
+  margin: 24px 0 24px 40px;
 `;
 
 const title__close = css`

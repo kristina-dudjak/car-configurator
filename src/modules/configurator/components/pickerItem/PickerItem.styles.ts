@@ -4,7 +4,7 @@ const container__details__item = css`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin: 0;
+  margin: 0 0 20px 0;
   &:hover {
     cursor: pointer;
     opacity: 0.7;

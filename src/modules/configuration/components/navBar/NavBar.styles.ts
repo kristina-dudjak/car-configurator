@@ -33,6 +33,7 @@ const year = css`
   font-weight: 400;
   font-size: 28px;
   line-height: 32px;
+  font-family: 'Optician Sans';
   letter-spacing: -2px;
   @media (max-width: 428px) {
     font-size: 20px;
@@ -43,8 +44,8 @@ const car = css`
   color: #2e2e38;
   letter-spacing: -2px;
   text-transform: uppercase;
-  font-weight: 400;
   font-size: 28px;
+  font-family: 'Optician Sans';
   line-height: 32px;
   text-align: center;
   @media (max-width: 428px) {
