@@ -1,86 +1,46 @@
-import { deleteDoc, doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
-import { authAtoms, carAtoms, Configuration } from 'modules';
-import { useEffect, useState } from 'react';
+import { Timestamp } from 'firebase/firestore';
+import { carAtoms, configurationAtoms } from 'modules';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { db } from '../../../firebase';
 
 export const useConfiguration = () => {
-  const userId = useRecoilValue(authAtoms.userUid);
-  const [configuration, setConfiguration] = useState<Configuration>();
-  const [savedConfiguration, setSavedConfiguration] = useState<Configuration>();
-  const setConfigurationRecoilState = useSetRecoilState(carAtoms.configuration);
+  const setConfName = useSetRecoilState(
+    configurationAtoms.configurationCarName,
+  );
+  const setConfYear = useSetRecoilState(
+    configurationAtoms.configurationCarYear,
+  );
+  const setConfPrice = useSetRecoilState(
+    configurationAtoms.configurationCarPrice,
+  );
+  const setConfColor = useSetRecoilState(configurationAtoms.configurationColor);
+  const setConfWheel = useSetRecoilState(configurationAtoms.configurationWheel);
+  const setConfInterior = useSetRecoilState(
+    configurationAtoms.configurationInterior,
+  );
+  const setConfDate = useSetRecoilState(
+    configurationAtoms.configurationCreationDate,
+  );
   const car = useRecoilValue(carAtoms.car);
   const { name } = useParams();
 
-  async function saveConfiguration(configuration: Configuration) {
-    setDoc(
-      doc(db, 'users', userId, 'configurations', configuration.modelName),
-      {
-        color: configuration.color,
-        wheel: configuration.wheel,
-        interior: configuration.interior,
-        creationDate: configuration.creationDate,
-        price: configuration.price,
-        year: configuration.year,
-      },
-      { merge: true },
-    );
-
-    setSavedConfiguration(configuration);
-    setConfigurationRecoilState(configuration);
-  }
-  async function getSavedConfiguration(modelName: string) {
-    const configurationRef = doc(
-      db,
-      'users',
-      userId,
-      'configurations/' + modelName,
-    );
-    const configuration: Configuration = {
-      modelName: modelName,
-      color: car.colors[0],
-      wheel: car.wheels[0],
-      interior: car.interiors[0],
-      year: car.year,
-      price:
-        car.price +
+  function setDefaultConfiguration() {
+    setConfName(car.name);
+    setConfYear(car.year);
+    setConfPrice(
+      car.price +
         car.colors[0].price +
         car.wheels[0].price +
         car.interiors[0].price,
-      creationDate: Timestamp.now(),
-    };
-    const confSnapshot = await getDoc(configurationRef);
-    if (confSnapshot.exists()) {
-      configuration.color = confSnapshot.data().color;
-      configuration.wheel = confSnapshot.data().wheel;
-      configuration.interior = confSnapshot.data().interior;
-      configuration.creationDate = confSnapshot.data().creationDate;
-      configuration.price = confSnapshot.data().price;
-      configuration.year = confSnapshot.data().year;
-
-      setSavedConfiguration(configuration);
-      setConfigurationRecoilState(configuration);
-    } else {
-      saveConfiguration(configuration);
-    }
-  }
-
-  async function deleteConfiguration(modelName: string) {
-    await deleteDoc(doc(db, 'users', userId, 'configurations/' + modelName));
+    );
+    setConfDate(Timestamp.now());
+    setConfColor(car.colors[0]);
+    setConfInterior(car.interiors[0]);
+    setConfWheel(car.wheels[0]);
   }
 
   useEffect(() => {
-    if (car.name === name) getSavedConfiguration(name);
-  }, [car, configuration]);
-
-  useEffect(() => {
-    if (car.name === name && configuration) saveConfiguration(configuration);
-  }, [configuration]);
-
-  return {
-    savedConfiguration,
-    setConfiguration,
-    deleteConfiguration,
-  };
+    if (car.name != '' && car.name === name) setDefaultConfiguration();
+  }, [car]);
 };

@@ -2,7 +2,7 @@ import { Timestamp } from 'firebase/firestore';
 import { CarItem } from 'modules';
 
 export interface Configuration {
-  modelName: string;
+  name: string;
   year: number;
   color: CarItem;
   wheel: CarItem;

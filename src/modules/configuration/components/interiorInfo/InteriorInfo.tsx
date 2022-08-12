@@ -1,23 +1,23 @@
 /** @jsxImportSource @emotion/react */
-import { carAtoms } from 'modules';
+import { configurationSelector } from 'modules';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styles from './InteriorInfo.styles';
 
 export const InteriorInfo: React.FC = () => {
-  const configuration = useRecoilValue(carAtoms.configuration);
+  const { interior } = useRecoilValue(configurationSelector.configuration);
 
   return (
     <article css={styles.interior__item}>
       <div css={styles.interior__info}>
         <img
-          src={configuration.interior.thumbnail}
+          src={interior.thumbnail}
           css={styles.interior__item__image}
           alt="Interior image"
         />
-        <p css={styles.interior__item__name}>{configuration.interior.name}</p>
+        <p css={styles.interior__item__name}>{interior.name}</p>
       </div>
-      <p css={styles.interior__item__price}>{configuration.interior.price}€</p>
+      <p css={styles.interior__item__price}>{interior.price}€</p>
     </article>
   );
 };

@@ -1,5 +1,5 @@
 import { Timestamp } from 'firebase/firestore';
-import { Car, Configuration } from 'modules';
+import { Car, CarItem } from 'modules';
 import { atom } from 'recoil';
 
 const car = atom<Car>({
@@ -13,22 +13,54 @@ const car = atom<Car>({
     wheels: [],
     interiors: [],
   },
+  dangerouslyAllowMutability: true,
 });
 
-const configuration = atom<Configuration>({
-  key: 'configuration',
-  default: {
-    modelName: '',
-    color: { id: '', name: '', thumbnail: '', price: 0 },
-    wheel: { id: '', name: '', thumbnail: '', price: 0 },
-    interior: { id: '', name: '', thumbnail: '', price: 0 },
-    price: 0,
-    year: 0,
-    creationDate: Timestamp.fromMillis(0),
-  },
+const configurationCarName = atom<string>({
+  key: 'configuration.carName',
+  default: '',
+});
+
+const configurationCarPrice = atom<number>({
+  key: 'configuration.carPrice',
+  default: 0,
+});
+
+const configurationCarYear = atom<number>({
+  key: 'configuration.carYear',
+  default: 0,
+});
+
+const configurationCreationDate = atom<Timestamp>({
+  key: 'configuration.creationDate',
+  default: Timestamp.now(),
+});
+
+const configurationColor = atom<CarItem>({
+  key: 'configuration.color',
+  default: { id: '', name: '', thumbnail: '', price: 0 },
+});
+
+const configurationWheel = atom<CarItem>({
+  key: 'configuration.wheel',
+  default: { id: '', name: '', thumbnail: '', price: 0 },
+});
+
+const configurationInterior = atom<CarItem>({
+  key: 'configuration.interior',
+  default: { id: '', name: '', thumbnail: '', price: 0 },
 });
 
 export const carAtoms = {
   car,
-  configuration,
+};
+
+export const configurationAtoms = {
+  configurationCarName,
+  configurationCarPrice,
+  configurationCarYear,
+  configurationColor,
+  configurationWheel,
+  configurationInterior,
+  configurationCreationDate,
 };
