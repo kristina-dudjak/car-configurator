@@ -1,6 +1,15 @@
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { Layout } from 'shared';
-import { CarSelect, Configuration, Home, Login, Register } from 'views';
+import {
+  CarSelect,
+  Configuration,
+  Exterior,
+  Home,
+  Interior,
+  Login,
+  Register,
+  Summary,
+} from 'views';
 import { useRecoilValue } from 'recoil';
 import { authAtoms } from 'modules';
 
@@ -29,6 +38,9 @@ export function App() {
           <Route index element={<CarSelect />} />
           <Route path=":name">
             <Route index element={<Configuration />} />
+            <Route path="exterior" element={<Exterior />} />
+            <Route path="interior" element={<Interior />} />
+            <Route path="summary" element={<Summary />} />
           </Route>
         </Route>
 
