@@ -1,4 +1,4 @@
-export * from './authentification';
+export * from './authentication';
 export * from './carSelect';
 export * from './configuration';
 export * from './configurator';
