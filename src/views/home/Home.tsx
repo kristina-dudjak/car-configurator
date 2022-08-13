@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { Empty } from 'modules';
+import { Empty, SavedItems, useSaved } from 'modules';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Home.styles';
 
 export const Home: React.FC = () => {
   const navigate = useNavigate();
+  const { savedConfigurations } = useSaved();
 
   return (
     <section css={styles.container}>
@@ -18,7 +19,7 @@ export const Home: React.FC = () => {
           Configure a car
         </button>
       </div>
-      <Empty />
+      {savedConfigurations.length === 0 ? <Empty /> : <SavedItems />}
     </section>
   );
 };
