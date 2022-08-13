@@ -8,7 +8,7 @@ const container = css`
   height: 100%;
   grid-template-areas:
     '. shared shared shared shared shared shared shared shared shared shared .'
-    '. empty empty empty empty empty empty empty empty empty empty .';
+    '. cars cars cars cars cars cars cars cars cars cars .';
 `;
 
 const container__shared = css`

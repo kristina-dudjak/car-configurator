@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 const container__saved = css`
-  grid-area: empty;
+  grid-area: cars;
   justify-self: stretch;
 `;
 

@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 const container__empty = css`
-  grid-area: empty;
+  grid-area: cars;
   place-self: start center;
 `;
 
