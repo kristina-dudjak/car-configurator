@@ -87,6 +87,7 @@ const link = css`
   line-height: 24px;
   margin: 0 4px;
 `;
+
 const info__item__total = css`
   display: flex;
   align-items: center;
@@ -153,6 +154,5 @@ export default {
   total__price,
   container__right,
   button,
-  //   container__nav__right,
   element,
 };
