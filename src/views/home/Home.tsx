@@ -3,6 +3,7 @@ import { Empty, SavedItems, useSaved } from 'modules';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Home.styles';
+import { ToastContainer } from 'react-toastify';
 
 export const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ export const Home: React.FC = () => {
         </button>
       </div>
       {savedConfigurations.length === 0 ? <Empty /> : <SavedItems />}
+      <ToastContainer />
     </section>
   );
 };

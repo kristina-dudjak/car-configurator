@@ -4,20 +4,6 @@ const details = css`
   grid-area: details;
 `;
 
-const total = css`
-  color: #505062;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 32px;
-`;
-
-const final__price = css`
-  color: #2e2e38;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 32px;
-`;
-
 const container__subtitle = css`
   padding: 0 0 20px 0;
   border-bottom: 1px solid #c7c7d1;
@@ -30,7 +16,6 @@ const container__subtitle = css`
 
 const subtitle = css`
   color: #505062;
-  font-weight: 400;
   font-size: 24px;
   line-height: 32px;
   @media (max-width: 428px) {
@@ -53,12 +38,26 @@ const price__item = css`
   align-items: center;
 `;
 
+const total = css`
+  color: #505062;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+`;
+
+const final__price = css`
+  color: #2e2e38;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+`;
+
 export default {
-  total,
-  final__price,
   details,
   container__subtitle,
   subtitle,
-  price__item,
   link,
+  price__item,
+  total,
+  final__price,
 };

@@ -4,7 +4,9 @@ import { EditedItem } from 'shared';
 
 export const useEditing = () => {
   const [editing, setEditing] = useState<EditedItem>(EditedItem.None);
-  const [items, setItems] = useState<CarItem[]>([]);
+  const [items, setItems] = useState<CarItem[]>([
+    { id: '', name: '', thumbnail: '', price: 0 },
+  ]);
   const car = useModel();
 
   useEffect(() => {
@@ -19,7 +21,7 @@ export const useEditing = () => {
         setItems(car.interiors);
         break;
     }
-  }, [editing]);
+  }, [editing, items]);
 
   return {
     setEditing,

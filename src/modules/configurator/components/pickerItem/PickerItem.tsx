@@ -20,13 +20,13 @@ export const PickerItem: React.FC<PickerItemProps> = ({ item, groupItem }) => {
     configurationAtoms.configurationInterior,
   );
 
-  function change() {
+  function changeDetailsView() {
     if (groupItem === EditedItem.Color) setColor(item);
     if (groupItem === EditedItem.Wheel) setWheel(item);
     if (groupItem === EditedItem.Interior) setInterior(item);
   }
   return (
-    <div css={styles.container__details__item} onClick={change}>
+    <div css={styles.container__details__item} onClick={changeDetailsView}>
       <span css={styles.container__image}>
         <img src={item.thumbnail} css={styles.image} />
         {(color.name === item.name ||

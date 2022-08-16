@@ -6,24 +6,28 @@ import { useRecoilState } from 'recoil';
 import styles from './RegistrationForm.styles';
 
 export const RegistrationForm: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [user, setUser] = useState({ email: '', password: '', name: '' });
   const [rememberMe, setRememberMe] = useRecoilState(authAtoms.userRemember);
   const [errorMessage, setErrorMessage] = useRecoilState(authAtoms.authError);
   const [isVisible, setIsVisible] = useState(false);
   const auth = useAuth();
   const db = useDb();
 
+  async function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setUser((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+    if (e.currentTarget.name === 'name') {
+      const taken = await db.isTaken(e.currentTarget.value);
+      if (taken) setErrorMessage('Name already taken! Try again');
+      else setErrorMessage('');
+    }
+  }
+
   function register(e: React.FormEvent) {
     e.preventDefault();
-    if (email && password && name) auth.createAccount(email, password, name);
-  }
-  async function updateName(input: string) {
-    setName(input);
-    const taken = await db.isTaken(input);
-    if (taken) setErrorMessage('Name already taken! Try again');
-    else setErrorMessage('');
+    auth.createAccount(user.email, user.password, user.name);
   }
 
   return (
@@ -33,23 +37,25 @@ export const RegistrationForm: React.FC = () => {
         <div css={styles.input__group}>
           <label css={styles.input__label}>Name</label>
           <input
+            name="name"
             css={styles.input}
-            value={name}
+            value={user.name}
             type="text"
             required={true}
             autoComplete={'on'}
-            onChange={(e) => updateName(e.currentTarget.value)}
+            onChange={(e) => handleChange(e)}
           />
         </div>
         <div css={styles.input__group}>
           <label css={styles.input__label}>Email</label>
           <input
+            name="email"
             css={styles.input}
-            value={email}
+            value={user.email}
             type="email"
             required={true}
             autoComplete={'on'}
-            onChange={(e) => setEmail(e.currentTarget.value)}
+            onChange={(e) => handleChange(e)}
           />
         </div>
         <div css={styles.input__group}>
@@ -57,12 +63,13 @@ export const RegistrationForm: React.FC = () => {
           <div css={styles.icon__container}>
             <Eye css={styles.icon} onClick={() => setIsVisible(!isVisible)} />
             <input
+              name="password"
               css={styles.input}
-              value={password}
+              value={user.password}
               type={isVisible ? 'text' : 'password'}
               required={true}
               autoComplete={'on'}
-              onChange={(e) => setPassword(e.currentTarget.value)}
+              onChange={(e) => handleChange(e)}
             />
           </div>
         </div>

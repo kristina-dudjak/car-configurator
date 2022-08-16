@@ -10,16 +10,22 @@ interface LoginFormProps {
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onShow }) => {
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setUser] = useState({ password: '', name: '' });
   const [rememberMe, setRememberMe] = useRecoilState(authAtoms.userRemember);
   const errorMessage = useRecoilValue(authAtoms.authError);
   const [isVisible, setIsVisible] = useState(false);
   const auth = useAuth();
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUser((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   function signIn(e: React.FormEvent) {
     e.preventDefault();
-    if (password && name) auth.signIn(name, password);
+    auth.signIn(user.name, user.password);
   }
 
   return (
@@ -29,12 +35,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onShow }) => {
         <div css={styles.input__group}>
           <label css={styles.input__label}>Name</label>
           <input
+            name="name"
             css={styles.input}
-            value={name}
+            value={user.name}
             type="text"
             required={true}
             autoComplete={'on'}
-            onChange={(e) => setName(e.currentTarget.value)}
+            onChange={(e) => handleChange(e)}
           />
         </div>
         <div css={styles.input__group}>
@@ -42,12 +49,13 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onShow }) => {
           <div css={styles.icon__container}>
             <Eye css={styles.icon} onClick={() => setIsVisible(!isVisible)} />
             <input
+              name="password"
               css={styles.input}
-              value={password}
+              value={user.password}
               type={isVisible ? 'text' : 'password'}
               required={true}
               autoComplete={'on'}
-              onChange={(e) => setPassword(e.currentTarget.value)}
+              onChange={(e) => handleChange(e)}
             />
           </div>
         </div>

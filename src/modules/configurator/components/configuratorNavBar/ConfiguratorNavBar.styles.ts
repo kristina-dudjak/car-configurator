@@ -5,7 +5,7 @@ function container__nav(editing: EditedItem) {
   return css({
     gridArea: 'nav',
     margin: editing !== EditedItem.None ? '0 -5% 0 0' : '0',
-    backgroundColor: 'white',
+    backgroundColor: '#fcfcfd',
     color: '#2e2e38',
     display: 'flex',
     flexDirection: 'row',
@@ -23,6 +23,10 @@ const container__nav__left = css`
   justify-content: space-evenly;
   gap: 16px;
   align-items: center;
+  font-family: 'Optician Sans';
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: -2px;
 `;
 
 const back = css`
@@ -34,20 +38,10 @@ const back = css`
 
 const year = css`
   color: #9d9daf;
-  font-weight: 400;
-  font-family: 'Optician Sans';
-  font-size: 28px;
-  line-height: 32px;
-  letter-spacing: -2px;
 `;
 
 const car = css`
-  color: #2e2e38;
-  letter-spacing: -2px;
   text-transform: uppercase;
-  font-size: 28px;
-  line-height: 32px;
-  font-family: 'Optician Sans';
 `;
 
 function container__nav__right(displayed: EditedItem) {
@@ -79,7 +73,6 @@ const number = css`
 
 const link = css`
   color: #2e2e38;
-  font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   margin: 0 4px;

@@ -15,6 +15,7 @@ const container__nav__item = css`
   flex-direction: row;
   gap: 16px;
   align-items: center;
+  font-family: 'Optician Sans';
   @media (max-width: 428px) {
     gap: 8px;
   }
@@ -30,10 +31,8 @@ const arrow__back = css`
 
 const year = css`
   color: #9d9daf;
-  font-weight: 400;
   font-size: 28px;
   line-height: 32px;
-  font-family: 'Optician Sans';
   letter-spacing: -2px;
   @media (max-width: 428px) {
     font-size: 20px;
@@ -41,11 +40,9 @@ const year = css`
 `;
 
 const car = css`
-  color: #2e2e38;
   letter-spacing: -2px;
   text-transform: uppercase;
   font-size: 28px;
-  font-family: 'Optician Sans';
   line-height: 32px;
   text-align: center;
   @media (max-width: 428px) {
@@ -67,7 +64,6 @@ const container__nav__links = css`
 
 const edit__link = css`
   color: #1e1ed2;
-  font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   padding: 16px 0;
@@ -83,7 +79,6 @@ const edit__link = css`
 
 const delete__link = css`
   color: #d2341e;
-  font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   text-align: center;

@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { db } from '../../../firebase';
+import { toast } from 'react-toastify';
 export const useSaved = () => {
   const storage = getStorage();
   const userId = useRecoilValue(authAtoms.userUid);
@@ -52,12 +53,26 @@ export const useSaved = () => {
     await deleteDoc(
       doc(db, 'users', userId, 'configurations/' + saved.creationDate),
     );
-    savedConfigurations.forEach((conf, creationDate) => {
-      if (conf.creationDate === saved.creationDate) {
-        setConfigurations(savedConfigurations.splice(creationDate, 1));
-      }
-    });
-    setConfigurations(savedConfigurations);
+    const wantedConf = savedConfigurations.find(
+      ({ creationDate }) => creationDate === saved.creationDate,
+    );
+    if (wantedConf) {
+      setConfigurations((prev) =>
+        prev.filter(
+          (savedConfigurations) => savedConfigurations !== wantedConf,
+        ),
+      );
+      toast.error('You have successfully deleted car configuration', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        style: { color: 'red' },
+      });
+    }
   }
 
   async function getSavedConfiguration() {
@@ -105,6 +120,7 @@ export const useSaved = () => {
   useEffect(() => {
     getSavedConfiguration();
   }, []);
+
   return {
     editSaved,
     savedConfigurations,

@@ -18,7 +18,6 @@ const car__name = css`
   color: #2e2e38;
   margin: 0;
   letter-spacing: -2px;
-  font-weight: 400;
   font-family: 'Optician Sans';
   font-size: 48px;
   line-height: 44px;
@@ -31,7 +30,6 @@ const car__name = css`
 const car__year = css`
   color: #73738c;
   letter-spacing: -2px;
-  font-weight: 400;
   font-family: 'Optician Sans';
   font-size: 28px;
   line-height: 32px;
@@ -56,7 +54,6 @@ const total = css`
   color: #9d9daf;
   letter-spacing: 2px;
   text-transform: uppercase;
-  font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   margin: 0;
@@ -65,7 +62,6 @@ const total = css`
 const total__price = css`
   color: #2e2e38;
   text-align: right;
-  font-weight: 400;
   font-size: 24px;
   line-height: 32px;
   margin: 0;
