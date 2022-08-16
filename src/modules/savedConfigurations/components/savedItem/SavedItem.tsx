@@ -2,8 +2,6 @@
 import { Dots } from 'assets';
 import React, { useState } from 'react';
 import styles from './SavedItem.styles';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { Configuration, useSaved } from 'modules';
 
 interface SavedItemProps {
@@ -15,20 +13,6 @@ export const SavedItem: React.FC<SavedItemProps> = ({ saved }) => {
   const { editSaved, deleteSaved, getSideImage } = useSaved();
   const url = getSideImage(saved);
   const date = saved.creationDate.toDate().toISOString();
-
-  function deleteConf() {
-    deleteSaved(saved);
-    toast.error('You have successfully deleted car configuration', {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      style: { color: 'red' },
-    });
-  }
 
   return (
     <div css={styles.container}>
@@ -52,12 +36,14 @@ export const SavedItem: React.FC<SavedItemProps> = ({ saved }) => {
           >
             Edit configuration
           </a>
-          <a css={styles.container__menu__delete} onClick={deleteConf}>
+          <a
+            css={styles.container__menu__delete}
+            onClick={() => deleteSaved(saved)}
+          >
             Delete
           </a>
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 };
