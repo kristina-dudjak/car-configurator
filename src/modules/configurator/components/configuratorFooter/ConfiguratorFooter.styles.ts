@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 const container__nav = css`
   grid-area: footer;
   margin: 0;
-  background-color: white;
+  background-color: #fcfcfd;
   color: #2e2e38;
   display: flex;
   flex-direction: row;
@@ -16,6 +16,10 @@ const container__nav__left = css`
   flex-direction: row;
   justify-content: space-evenly;
   gap: 16px;
+  font-family: 'Optician Sans';
+  letter-spacing: -2px;
+  font-size: 28px;
+  line-height: 32px;
   align-items: flex-start;
   @media (max-width: 900px) {
     flex-direction: column;
@@ -25,11 +29,6 @@ const container__nav__left = css`
 
 const year = css`
   color: #73738c;
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 32px;
-  font-family: 'Optician Sans';
-  letter-spacing: -2px;
   margin-left: 40px;
   @media (max-width: 900px) {
     margin: 0;
@@ -38,12 +37,7 @@ const year = css`
 `;
 
 const car = css`
-  letter-spacing: -2px;
   text-transform: uppercase;
-  font-family: 'Optician Sans';
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 32px;
   @media (max-width: 428px) {
     font-size: 24px;
   }
@@ -61,57 +55,27 @@ const container__right = css`
   }
 `;
 
-const element = css`
-  padding: 28px 40px;
-`;
-
-const number = css`
-  color: #9d9daf;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-`;
-
-const active__link = css`
-  color: #2e2e38;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  margin: 0 4px;
-`;
-
-const link = css`
-  color: #2e2e38;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  margin: 0 4px;
-`;
-
 const info__item__total = css`
   display: flex;
   align-items: center;
   column-gap: 8px;
 `;
 
-const info = css`
-  color: #9898f0;
-`;
-
 const total = css`
   color: #9d9daf;
   letter-spacing: 2px;
   text-transform: uppercase;
-  font-weight: 400;
   font-size: 14px;
   line-height: 20px;
   margin: 0;
 `;
 
+const info = css`
+  color: #9898f0;
+`;
+
 const total__price = css`
-  color: #2e2e38;
   text-align: right;
-  font-weight: 400;
   font-size: 24px;
   line-height: 32px;
   margin-right: 32px;
@@ -140,19 +104,16 @@ const button = css`
     padding: 14px;
   }
 `;
+
 export default {
   container__nav,
   container__nav__left,
-  active__link,
-  link,
   year,
-  number,
   car,
-  info,
+  container__right,
   info__item__total,
   total,
+  info,
   total__price,
-  container__right,
   button,
-  element,
 };

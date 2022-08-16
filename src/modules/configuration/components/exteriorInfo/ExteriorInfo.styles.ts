@@ -11,17 +11,6 @@ const exterior__item = css`
   }
 `;
 
-const exterior__item__name = css`
-  color: #2e2e38;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
-`;
-
-const exterior__item__image = css`
-  width: 20%;
-`;
-
 const exterior__info = css`
   display: flex;
   flex-direction: row;
@@ -29,18 +18,27 @@ const exterior__info = css`
   align-items: center;
 `;
 
+const exterior__item__image = css`
+  width: 20%;
+`;
+
+const exterior__item__name = css`
+  color: #2e2e38;
+  font-size: 20px;
+  line-height: 28px;
+`;
+
 const exterior__item__price = css`
   color: #73738c;
-  font-weight: 400;
   font-size: 20px;
   white-space: nowrap;
   text-align: center;
 `;
 
 export default {
-  exterior__info,
   exterior__item,
-  exterior__item__name,
+  exterior__info,
   exterior__item__image,
+  exterior__item__name,
   exterior__item__price,
 };

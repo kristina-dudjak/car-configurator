@@ -11,26 +11,6 @@ const container__details__item = css`
   }
 `;
 
-const item__text = css`
-  margin: 20px 0;
-`;
-
-const item__name = css`
-  color: #2e2e38;
-  font-weight: 400;
-  margin: 0;
-  font-size: 16px;
-  line-height: 24px;
-`;
-
-const item__price = css`
-  color: #73738c;
-  font-weight: 400;
-  margin: 0;
-  font-size: 14px;
-  line-height: 20px;
-`;
-
 const container__image = css`
   width: 30%;
   margin: 0;
@@ -50,12 +30,30 @@ const checkmark = css`
   margin: 0 0 0 -30%;
 `;
 
+const item__text = css`
+  margin: 20px 0;
+`;
+
+const item__name = css`
+  color: #2e2e38;
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+`;
+
+const item__price = css`
+  color: #73738c;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+`;
+
 export default {
   container__details__item,
-  item__text,
-  item__name,
-  item__price,
   container__image,
   image,
   checkmark,
+  item__text,
+  item__name,
+  item__price,
 };

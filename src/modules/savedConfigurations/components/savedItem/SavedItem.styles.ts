@@ -18,6 +18,13 @@ const container__info = css`
   }
 `;
 
+const image = css`
+  width: 50%;
+  @media (max-width: 428px) {
+    width: 100%;
+  }
+`;
+
 const container__text = css`
   margin: 30px 0;
   padding: 0 0 0 28px;
@@ -27,13 +34,6 @@ const container__text = css`
   justify-content: space-between;
   @media (max-width: 428px) {
     margin-bottom: 0;
-  }
-`;
-
-const image = css`
-  width: 50%;
-  @media (max-width: 428px) {
-    width: 100%;
   }
 `;
 
@@ -61,14 +61,12 @@ const color = css`
   margin: 8px 0 32px 0;
   letter-spacing: 2px;
   text-transform: uppercase;
-  font-weight: 400;
   font-size: 11px;
   line-height: 16px;
 `;
 
 const time = css`
   color: #9d9daf;
-  font-weight: 400;
   font-size: 12px;
   line-height: 16px;
   margin: 0;
@@ -113,9 +111,9 @@ const container__menu__delete = css`
 export default {
   container,
   container__info,
+  image,
   container__text,
   year,
-  image,
   name,
   color,
   time,

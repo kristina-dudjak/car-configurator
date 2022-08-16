@@ -27,29 +27,27 @@ const picker = css`
   column-gap: 4px;
 `;
 
-const current__number = css`
-  color: #2e2e38;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
-`;
-
 const arrow = css`
   margin: 0 20px;
 `;
 
+const current__number = css`
+  color: #2e2e38;
+  font-size: 20px;
+  line-height: 28px;
+`;
+
 const slider__item = css`
   color: #c7c7d1;
-  font-weight: 400;
   font-size: 20px;
   line-height: 28px;
 `;
 
 export default {
-  arrow,
-  image,
-  current__number,
-  picker,
   car__slider,
+  image,
+  picker,
+  arrow,
+  current__number,
   slider__item,
 };

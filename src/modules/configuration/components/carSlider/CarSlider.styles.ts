@@ -29,20 +29,18 @@ const picker = css`
 
 const current__number = css`
   color: #2e2e38;
-  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+`;
+
+const slider__item = css`
+  color: #c7c7d1;
   font-size: 20px;
   line-height: 28px;
 `;
 
 const arrow = css`
   margin: 0 20px;
-`;
-
-const slider__item = css`
-  color: #c7c7d1;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
 `;
 
 export default {

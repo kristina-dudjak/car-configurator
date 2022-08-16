@@ -7,6 +7,7 @@ const container__details = css`
   border: 1px solid #c7c7d1;
   display: flex;
   flex-direction: column;
+  color: #2e2e38;
   justify-content: space-between;
 `;
 
@@ -18,15 +19,13 @@ const container__title = css`
 `;
 
 const title = css`
-  color: #2e2e38;
-  font-weight: 400;
   font-size: 24px;
   line-height: 32px;
   margin: 24px 0 24px 40px;
+  font-weight: 400;
 `;
 
 const title__close = css`
-  color: #2e2e38;
   margin: 24px 40px;
 `;
 
@@ -52,25 +51,22 @@ const info__item__total = css`
   column-gap: 8px;
 `;
 
+const total = css`
+  color: #9d9daf;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+`;
+
 const info = css`
   color: #9898f0;
 `;
 
 const price = css`
-  color: #2e2e38;
-  font-weight: 400;
   font-size: 24px;
   line-height: 32px;
-`;
-
-const total = css`
-  color: #9d9daf;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  margin: 0;
 `;
 
 const button = css`
@@ -93,16 +89,16 @@ const button = css`
 `;
 
 export default {
+  container__details,
+  container__title,
   title,
   title__close,
-  container__details,
   container__details__items,
+  container__details__final,
   container__price,
-  container__title,
   info__item__total,
+  total,
   info,
   price,
-  total,
   button,
-  container__details__final,
 };

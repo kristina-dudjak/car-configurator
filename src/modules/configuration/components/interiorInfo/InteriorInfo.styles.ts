@@ -11,17 +11,6 @@ const interior__item = css`
   }
 `;
 
-const interior__item__name = css`
-  color: #2e2e38;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
-`;
-
-const interior__item__image = css`
-  width: 20%;
-`;
-
 const interior__info = css`
   display: flex;
   flex-direction: row;
@@ -29,9 +18,18 @@ const interior__info = css`
   align-items: center;
 `;
 
+const interior__item__image = css`
+  width: 20%;
+`;
+
+const interior__item__name = css`
+  color: #2e2e38;
+  font-size: 20px;
+  line-height: 28px;
+`;
+
 const interior__item__price = css`
   color: #73738c;
-  font-weight: 400;
   font-size: 20px;
   line-height: 28px;
   white-space: nowrap;
@@ -40,7 +38,7 @@ const interior__item__price = css`
 export default {
   interior__item,
   interior__info,
-  interior__item__name,
   interior__item__image,
+  interior__item__name,
   interior__item__price,
 };
